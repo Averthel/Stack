@@ -1,16 +1,16 @@
 package pl.ave;
 
-public class Stack {
+public class Stack<T> {
 
-    private String[] myArray;
+    private T[] myArray;
     private int lastIndex;
 
     public Stack() {
-        myArray = new String[10];
+        myArray = (T[]) new Object[10];
         lastIndex = -1;
     }
 
-    public void add(String newElement) {
+    public void add(T newElement) {
         if (isEmptyPlace()) {
             myArray = makeItDouble(myArray);
         }
@@ -22,24 +22,24 @@ public class Stack {
         return lastIndex > myArray.length - 1;
     }
 
-    public String[] makeItDouble(String[] myArray) {
+    public T[] makeItDouble(T[] myArray) {
         int newArraySize = myArray.length * 2;
         return copyToNewArray(myArray, newArraySize);
     }
 
-    public String[] copyToNewArray(String[] myArray, int newSize) {
-        String[] newElements = new String[newSize];
+    public T[] copyToNewArray(T[] myArray, int newSize) {
+        T[] newElements = (T[]) new Object[newSize];
         for (int i = 0; i < myArray.length; i++) {
             newElements[i] = myArray[i];
         }
         return newElements;
     }
 
-    public String pop() {
+    public T pop() {
         if (isEmpty()) {
             return null;
         }
-        String popElement = myArray[lastIndex];
+        T popElement = myArray[lastIndex];
         myArray[lastIndex] = null;
         lastIndex--;
         return popElement;
@@ -49,8 +49,8 @@ public class Stack {
         return lastIndex == -1;
     }
 
-
 }
+
 
 
 
